@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innoahou Prices - Design Services Complete Pricing Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .poster {
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .poster::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,0,150,0.1), transparent);
+            animation: rotate 20s linear infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .main-title {
+            font-size: 2.8rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff006e, #8338ec, #3a86ff, #06ffa5);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #06ffa5;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .section {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ff006e, #06ffa5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .service-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 10px;
+            border-left: 4px solid;
+            transition: all 0.3s ease;
+        }
+        
+        .service-item:nth-child(odd) {
+            border-left-color: #ff006e;
+        }
+        
+        .service-item:nth-child(even) {
+            border-left-color: #06ffa5;
+        }
+        
+        .service-item:hover {
+            transform: translateX(5px);
+            background: rgba(255,255,255,0.08);
+        }
+        
+        .service-number {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #06ffa5;
+            margin-bottom: 8px;
+        }
+        
+        .service-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        
+        .service-description {
+            font-size: 0.9rem;
+            color: #b0b0b0;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        
+        .service-price {
+            font-size: 1.3rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ff006e, #06ffa5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 5px;
+        }
+        
+        .service-details {
+            font-size: 0.85rem;
+            color: #888;
+            line-height: 1.4;
+        }
+        
+        .add-ons {
+            font-size: 0.8rem;
+            color: #06ffa5;
+            font-weight: 500;
+            margin-top: 5px;
+        }
+        
+        .package-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .package-item {
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(255,0,110,0.1), rgba(6,255,165,0.1));
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+        }
+        
+        .package-badge {
+            position: absolute;
+            top: -10px;
+            right: 15px;
+            background: linear-gradient(45deg, #ff006e, #8338ec);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        .package-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        
+        .package-includes {
+            font-size: 0.9rem;
+            color: #d0d0d0;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+        
+        .package-pricing {
+            margin-top: 15px;
+        }
+        
+        .regular-price {
+            font-size: 0.9rem;
+            color: #888;
+            text-decoration: line-through;
+            margin-bottom: 5px;
+        }
+        
+        .package-price {
+            font-size: 1.5rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff006e, #06ffa5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .payment-section {
+            background: rgba(255,255,255,0.03);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .good-to-know {
+            background: rgba(6,255,165,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(6,255,165,0.3);
+        }
+        
+        .good-to-know ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .good-to-know li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .good-to-know li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #06ffa5;
+            font-weight: bold;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .contact-info {
+            background: linear-gradient(135deg, rgba(255,0,110,0.2), rgba(6,255,165,0.2));
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .contact-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #ff006e, #06ffa5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .phone {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #06ffa5;
+            margin-bottom: 10px;
+        }
+        
+        .highlight {
+            color: #06ffa5;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .package-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-title {
+                font-size: 2rem;
+            }
+            
+            .poster {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="poster">
+        <div class="header">
+            <h1 class="main-title">Design Services</h1>
+            <p class="subtitle">Complete Pricing Guide</p>
+        </div>
+        
+        <div class="content">
+            <!-- Core Services Section -->
+            <div class="section">
+                <h2 class="section-title">Core Services</h2>
+                
+                <div class="service-item">
+                    <div class="service-number">1. Posters & Flyers</div>
+                    <div class="service-description">What you get: Single-sided design for digital sharing or basic printing with basic text and images</div>
+                    <div class="service-price">Price: 2,000 CFA - 3,000 CFA</div>
+                    <div class="service-details">Delivery: 2-3 business days<br>Includes: 2 rounds of revisions</div>
+                    <div class="add-ons">Add-ons: Double-sided and Complex design (+1,000 CFA)</div>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-number">2. PowerPoint Presentations</div>
+                    <div class="service-description">What you get: Basic formatting and clean-up of up to 10-15 client-provided slides with standard theme</div>
+                    <div class="service-price">Price: 2,000 CFA - 4,000 CFA</div>
+                    <div class="service-details">Delivery: 3-5 business days<br>Includes: 2 rounds of revisions</div>
+                    <div class="add-ons">Add-ons: Additional slides (+200 CFA each)</div>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-number">3. Business Logos</div>
+                    <div class="service-description">What you get: Minimalist logo design, text-based or simple icon, one concept with minor adjustments</div>
+                    <div class="service-price">Price: 4,000 CFA - 6,000 CFA</div>
+                    <div class="service-details">Delivery: 5-7 business days<br>Includes: 2 rounds of revisions</div>
+                    <div class="add-ons">Add-ons: Additional concepts (+1,000 CFA each), Complex/unique design (+2,000 CFA)</div>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-number">4. Business Card Design</div>
+                    <div class="service-description">What you get: Standard, single-sided layout using your provided logo and contact details</div>
+                    <div class="service-price">Price: 1,500 CFA - 3,000 CFA</div>
+                    <div class="service-details">Delivery: 1-2 business days<br>Includes: 2 rounds of revisions</div>
+                    <div class="add-ons">Add-ons: Double-sided (+1,000 CFA), Premium design (+1,500 CFA)</div>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-number">5. Social Media Graphics</div>
+                    <div class="service-description">What you get: Static graphics for Facebook, Instagram, WhatsApp business posts</div>
+                    <div class="service-price">Price: 2,000 CFA - 3,000 CFA</div>
+                    <div class="service-details">Delivery: 2-3 business days<br>Includes: 2 rounds of revisions</div>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-number">6. Brand Advertisement</div>
+                    <div class="service-name">Video Services</div>
+                    <div class="service-description">What you get:</div>
+                    <ul style="color: #d0d0d0; font-size: 0.9rem; margin: 10px 0; padding-left: 20px;">
+                        <li>Short animated commercial/motion graphics</li>
+                        <li>Video editing with your provided videos and images</li>
+                        <li>Social media video content</li>
+                    </ul>
+                    <div class="service-price">Price: 5,000 CFA - 10,000 CFA</div>
+                    <div class="service-details">Delivery: 5-10 business days<br>Includes: 2 rounds of revisions</div>
+                </div>
+            </div>
+            
+            <!-- Package Deals Section -->
+            <div class="section">
+                <h2 class="section-title">Package Deals - Save Money!</h2>
+                
+                <div class="package-grid">
+                    <div class="package-item">
+                        <div class="package-badge">Save 6,000 CFA</div>
+                        <div class="package-name">Startup Bundle</div>
+                        <div class="package-includes">Business Logo + Business Card + 3 Social Media Graphics</div>
+                        <div class="package-pricing">
+                            <div class="regular-price">Regular Price: 18,000 CFA (6,000 + 3,000 + 9,000)</div>
+                            <div class="package-price">Package Price: 12,000 CFA</div>
+                        </div>
+                    </div>
+                    
+                    <div class="package-item">
+                        <div class="package-badge">Save 4,000 CFA</div>
+                        <div class="package-name">Marketing Package</div>
+                        <div class="package-includes">3 Posters/Flyers + PowerPoint Presentation + 2 Social Media Graphics</div>
+                        <div class="package-pricing">
+                            <div class="regular-price">Regular Price: 19,000 CFA (9,000 + 4,000 + 6,000)</div>
+                            <div class="package-price">Package Price: 15,000 CFA</div>
+                        </div>
+                    </div>
+                    
+                    <div class="package-item">
+                        <div class="package-badge">Save 10,000 CFA</div>
+                        <div class="package-name">Complete Brand Package</div>
+                        <div class="package-includes">Logo + Business Card + 5 Social Media Graphics + 2 Posters + PowerPoint</div>
+                        <div class="package-pricing">
+                            <div class="regular-price">Regular Price: 34,000 CFA (6,000 + 3,000 + 15,000 + 6,000 + 4,000)</div>
+                            <div class="package-price">Package Price: 24,000 CFA</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Payment Terms Section -->
+            <div class="section">
+                <h2 class="section-title">Payment Terms</h2>
+                <div class="payment-section">
+                    <strong>Payment methods:</strong> Wave, Cash
+                </div>
+                
+                <div class="good-to-know">
+                    <h3 style="color: #06ffa5; margin-bottom: 15px; font-size: 1.1rem;">Good to Know</h3>
+                    <ul>
+                        <li>You give me your text and pictures if any</li>
+                        <li>I will give you the design in normal formats (PNG, JPG, PDF etc.)</li>
+                        <li>You can ask for changes within 1 week</li>
+                        <li>You can use the design for your business</li>
+                        <li>Fast jobs depend on if I'm free</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="contact-info">
+                <div class="contact-title">Contact me to discuss your project and get started!</div>
+                <div class="phone">0545969223</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
