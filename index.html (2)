@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>INNOAHOU — Design Graphique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink-deep:#0c0f24;
+    --ink-deep2:#151a3a;
+    --panel:#faf7f0;
+    --panel-line:#e7e0d1;
+    --gold:#e8b04b;
+    --gold-soft:#f4d78e;
+    --pink:#ef4a86;
+    --blue:#4169f0;
+    --green:#1cb888;
+    --purple:#9163ea;
+    --orange:#f0913f;
+    --teal:#18b3ac;
+    --text-light:#f3efe4;
+    --text-dim:#a4a7c4;
+    --ink:#211d3b;
+    --ink-dim:#6d6a86;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Manrope', Arial, sans-serif;
+    background:
+      radial-gradient(circle at 15% 8%, rgba(232,176,75,0.10), transparent 40%),
+      linear-gradient(180deg,var(--ink-deep),var(--ink-deep2));
+    color:var(--text-light);
+    display:flex;
+    justify-content:center;
+    padding:24px;
+  }
+  .poster{
+    width:420px;
+    background:
+      radial-gradient(circle at 85% 0%, rgba(145,99,234,0.14), transparent 45%),
+      linear-gradient(180deg,var(--ink-deep),var(--ink-deep2));
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:0 24px 70px rgba(0,0,0,0.55);
+    position:relative;
+  }
+  .orb{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(38px);
+    pointer-events:none;
+    z-index:0;
+  }
+  .content{
+    position:relative;
+    z-index:1;
+  }
+  .orb-1{
+    width:160px;height:160px;
+    top:-40px;left:-40px;
+    background:radial-gradient(circle, rgba(239,74,134,0.35), transparent 70%);
+    animation:drift1 13s ease-in-out infinite;
+  }
+  .orb-2{
+    width:180px;height:180px;
+    top:20px;right:-60px;
+    background:radial-gradient(circle, rgba(232,176,75,0.30), transparent 70%);
+    animation:drift2 16s ease-in-out infinite;
+  }
+  .orb-3{
+    width:140px;height:140px;
+    top:200px;left:50%;
+    background:radial-gradient(circle, rgba(145,99,234,0.28), transparent 70%);
+    animation:drift3 19s ease-in-out infinite;
+  }
+  @keyframes drift1{
+    0%,100%{transform:translate(0,0);}
+    50%{transform:translate(18px,22px);}
+  }
+  @keyframes drift2{
+    0%,100%{transform:translate(0,0);}
+    50%{transform:translate(-22px,16px);}
+  }
+  @keyframes drift3{
+    0%,100%{transform:translate(-50%,0);}
+    50%{transform:translate(calc(-50% - 16px),-20px);}
+  }
+  @keyframes float{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-5px);}
+  }
+  @keyframes floatSmall{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-3px);}
+  }
+  @keyframes glowPulse{
+    0%,100%{opacity:1;}
+    50%{opacity:0.55;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .orb-1,.orb-2,.orb-3,.swatch span,.icon-badge,.best-badge,.phone-pulse{
+      animation:none !important;
+    }
+  }
+
+  /* ---------- Language toggle ---------- */
+  .lang-toggle-wrap{
+    display:flex;
+    justify-content:center;
+    padding:16px 16px 0;
+  }
+  .lang-toggle{
+    display:flex;
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(232,176,75,0.25);
+    border-radius:20px;
+    padding:3px;
+    gap:2px;
+  }
+  .lang-btn{
+    border:none;
+    background:transparent;
+    color:var(--text-dim);
+    font-family:'Manrope',sans-serif;
+    font-size:10.5px;
+    font-weight:700;
+    letter-spacing:0.5px;
+    padding:6px 15px;
+    border-radius:16px;
+    cursor:pointer;
+    transition:all 0.2s ease;
+  }
+  .lang-btn.active{
+    background:linear-gradient(90deg,var(--gold),var(--gold-soft));
+    color:#241a05;
+  }
+
+  /* ---------- Header ---------- */
+  .header{
+    text-align:center;
+    padding:22px 20px 20px;
+  }
+  .swatch{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:6px;
+    margin-bottom:10px;
+  }
+  .swatch span{
+    width:6px;height:6px;border-radius:50%;
+    display:inline-block;
+    animation:floatSmall 2.6s ease-in-out infinite;
+  }
+  .swatch .s1{background:var(--pink); animation-delay:0s;}
+  .swatch .s2{background:var(--gold); animation-delay:0.3s;}
+  .swatch .s3{background:var(--teal); animation-delay:0.6s;}
+  .swatch .line{
+    width:24px;height:1px;
+    background:rgba(255,255,255,0.18);
+  }
+  .brand{
+    font-family:'Fraunces', serif;
+    font-size:38px;
+    font-weight:600;
+    letter-spacing:0.5px;
+    color:var(--text-light);
+    background:linear-gradient(100deg,#fff 0%, var(--gold-soft) 45%, var(--gold) 70%, #fff 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .tagline{
+    font-size:10px;
+    letter-spacing:3.5px;
+    color:var(--gold-soft);
+    margin-top:6px;
+    text-transform:uppercase;
+    font-weight:700;
+  }
+  .slogan{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:13px;
+    color:var(--text-dim);
+    margin-top:8px;
+  }
+
+  /* ---------- Section headers ---------- */
+  .section-head{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:0 20px;
+    margin:26px 0 14px;
+  }
+  .section-head .rule{
+    flex:1;
+    height:1px;
+    background:linear-gradient(90deg, rgba(232,176,75,0.5), rgba(232,176,75,0));
+  }
+  .section-head.right .rule{
+    background:linear-gradient(90deg, rgba(232,176,75,0), rgba(232,176,75,0.5));
+  }
+  .section-eyebrow{
+    font-size:9px;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    font-weight:800;
+    color:var(--gold-soft);
+    white-space:nowrap;
+  }
+
+  /* ---------- Service cards ---------- */
+  .grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    padding:0 16px;
+  }
+  .card{
+    background:var(--panel);
+    color:var(--ink);
+    border-radius:14px;
+    padding:14px 12px 12px;
+    position:relative;
+    border:1px solid var(--panel-line);
+    overflow:hidden;
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 28px rgba(0,0,0,0.25);
+  }
+  .card::before{
+    content:"";
+    position:absolute;
+    left:0;top:0;bottom:0;
+    width:4px;
+  }
+  .card.pink::before{background:var(--pink);}
+  .card.blue::before{background:var(--blue);}
+  .card.green::before{background:var(--green);}
+  .card.purple::before{background:var(--purple);}
+  .card.orange::before{background:var(--orange);}
+  .card.teal::before{background:var(--teal);}
+
+  .icon-badge{
+    width:26px;height:26px;
+    border-radius:8px;
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:8px;
+    animation:floatSmall 3.4s ease-in-out infinite;
+  }
+  .icon-badge svg{width:14px;height:14px;}
+  .grid .card:nth-child(1) .icon-badge{animation-delay:0s;}
+  .grid .card:nth-child(2) .icon-badge{animation-delay:0.4s;}
+  .grid .card:nth-child(3) .icon-badge{animation-delay:0.8s;}
+  .grid .card:nth-child(4) .icon-badge{animation-delay:1.2s;}
+  .grid .card:nth-child(5) .icon-badge{animation-delay:1.6s;}
+  .grid .card:nth-child(6) .icon-badge{animation-delay:2.0s;}
+  .card.pink .icon-badge{background:rgba(239,74,134,0.12); color:var(--pink);}
+  .card.blue .icon-badge{background:rgba(65,105,240,0.12); color:var(--blue);}
+  .card.green .icon-badge{background:rgba(28,184,136,0.12); color:var(--green);}
+  .card.purple .icon-badge{background:rgba(145,99,234,0.12); color:var(--purple);}
+  .card.orange .icon-badge{background:rgba(240,145,63,0.12); color:var(--orange);}
+  .card.teal .icon-badge{background:rgba(24,179,172,0.12); color:var(--teal);}
+
+  .card h3{
+    font-size:12px;
+    font-weight:800;
+    margin:0 0 6px;
+    line-height:1.25;
+    letter-spacing:0.1px;
+  }
+  .price{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:16px;
+    margin-bottom:5px;
+  }
+  .price.pink{color:var(--pink);}
+  .price.blue{color:var(--blue);}
+  .price.green{color:var(--green);}
+  .price.purple{color:var(--purple);}
+  .price.orange{color:var(--orange);}
+  .price.teal{color:var(--teal);}
+  .desc{
+    font-size:9px;
+    color:var(--ink-dim);
+    line-height:1.4;
+    margin-bottom:9px;
+  }
+  .btn{
+    display:inline-block;
+    font-size:8.5px;
+    font-weight:700;
+    letter-spacing:0.3px;
+    color:#fff;
+    padding:5px 10px;
+    border-radius:20px;
+  }
+  .btn.pink{background:var(--pink);}
+  .btn.blue{background:var(--blue);}
+  .btn.green{background:var(--green);}
+  .btn.purple{background:var(--purple);}
+  .btn.orange{background:var(--orange);}
+  .btn.teal{background:var(--teal);}
+
+  /* ---------- Packages ---------- */
+  .packages{
+    padding:0 16px;
+  }
+  .pkg-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+  .pkg-card{
+    background:var(--panel);
+    color:var(--ink);
+    border-radius:14px;
+    padding:14px 12px 12px;
+    text-align:center;
+    position:relative;
+    border:1px solid var(--panel-line);
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .pkg-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 28px rgba(0,0,0,0.25);
+  }
+  .pkg-card.best-seller{
+    border:1.5px solid var(--gold);
+    box-shadow:0 0 0 3px rgba(232,176,75,0.14);
+  }
+  .best-badge{
+    position:absolute;
+    top:-10px;
+    left:50%;
+    transform:translateX(-50%);
+    background:linear-gradient(90deg,var(--gold),var(--gold-soft));
+    color:#241a05;
+    font-size:7.5px;
+    font-weight:900;
+    letter-spacing:0.5px;
+    padding:3px 10px;
+    border-radius:20px;
+    text-transform:uppercase;
+    white-space:nowrap;
+    box-shadow:0 2px 8px rgba(0,0,0,0.35);
+    animation:floatBadge 2.8s ease-in-out infinite;
+  }
+  @keyframes floatBadge{
+    0%,100%{transform:translateX(-50%) translateY(0);}
+    50%{transform:translateX(-50%) translateY(-4px);}
+  }
+  .pkg-card h4{
+    font-size:10.5px;
+    margin:0 0 6px;
+    font-weight:800;
+    color:var(--ink);
+  }
+  .pkg-price{
+    font-family:'Fraunces', serif;
+    font-size:17px;
+    font-weight:600;
+    margin-bottom:3px;
+  }
+  .pkg-old{
+    font-size:8.5px;
+    color:var(--ink-dim);
+    margin-bottom:7px;
+    font-weight:600;
+  }
+  .pkg-old::before{
+    content:"✓ ";
+    color:var(--green);
+  }
+  .pkg-desc{
+    font-size:8.5px;
+    color:var(--ink-dim);
+    line-height:1.35;
+    text-align:left;
+  }
+  .pkg-bar{
+    height:5px;
+    border-radius:4px;
+    margin-top:9px;
+  }
+
+  /* ---------- Contact ---------- */
+  .contact{
+    background:
+      radial-gradient(circle at 20% 0%, rgba(232,176,75,0.10), transparent 55%),
+      linear-gradient(180deg,var(--ink-deep2),#0e1230);
+    text-align:center;
+    padding:28px 20px 24px;
+    margin-top:26px;
+    border-top:1px solid rgba(232,176,75,0.2);
+  }
+  .contact-eyebrow{
+    font-size:9px;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    font-weight:800;
+    color:var(--gold-soft);
+    margin-bottom:6px;
+  }
+  .contact h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    color:var(--text-light);
+    font-size:19px;
+    margin:0 0 16px;
+  }
+  .phone{
+    font-family:'Fraunces', serif;
+    font-size:23px;
+    font-weight:600;
+    color:#241a05;
+    background:linear-gradient(90deg,var(--gold),var(--gold-soft));
+    display:inline-block;
+    padding:10px 22px;
+    border-radius:10px;
+    letter-spacing:1px;
+    box-shadow:0 8px 24px rgba(232,176,75,0.25);
+    animation:phonePulse 3s ease-in-out infinite;
+  }
+  @keyframes phonePulse{
+    0%,100%{box-shadow:0 8px 24px rgba(232,176,75,0.25);}
+    50%{box-shadow:0 8px 34px rgba(232,176,75,0.5);}
+  }
+  .contact ul{
+    list-style:none;
+    padding:0;
+    margin:18px 0 0;
+    font-size:10px;
+    color:var(--text-dim);
+    line-height:1.9;
+    text-align:left;
+    max-width:300px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .contact ul li{
+    display:flex;
+    gap:8px;
+    align-items:flex-start;
+  }
+  .contact ul li::before{
+    content:"✦";
+    color:var(--gold);
+    font-size:9px;
+    margin-top:2px;
+    flex-shrink:0;
+  }
+
+  /* ---------- Footer stripe ---------- */
+  .stripe{
+    background:linear-gradient(90deg,var(--pink),var(--gold));
+    text-align:center;
+    padding:11px;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:1px;
+    color:#fff;
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="content">
+
+  <div class="lang-toggle-wrap">
+    <div class="lang-toggle">
+      <button class="lang-btn active" data-lang="fr" onclick="setLang('fr')">FR</button>
+      <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+
+  <div class="header">
+    <div class="swatch"><span class="line"></span><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="line"></span></div>
+    <div class="brand">INNOAHOU</div>
+    <div class="tagline" data-i18n="tagline"></div>
+    <div class="slogan" data-i18n="slogan"></div>
+  </div>
+
+  <div class="section-head">
+    <span class="section-eyebrow" data-i18n="core-services"></span>
+    <span class="rule"></span>
+  </div>
+
+  <div class="grid">
+
+    <div class="card pink">
+      <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5-4 4-3-3-6 6"/></svg></div>
+      <h3 data-i18n="c1-title"></h3>
+      <div class="price pink">10 000 CFA</div>
+      <div class="desc" data-i18n="c1-desc"></div>
+      <span class="btn pink" data-i18n="btn"></span>
+    </div>
+
+    <div class="card blue">
+      <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/></svg></div>
+      <h3 data-i18n="c2-title"></h3>
+      <div class="price blue">8 000 CFA</div>
+      <div class="desc" data-i18n="c2-desc"></div>
+      <span class="btn blue" data-i18n="btn"></span>
+    </div>
+
+    <div class="card green">
+      <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.5 6.5L22 10l-5 4.5L18.5 22 12 18l-6.5 4L7 14.5 2 10l6.5-1.5z"/></svg></div>
+      <h3 data-i18n="c3-title"></h3>
+      <div class="price green">6 500 CFA</div>
+      <div class="desc" data-i18n="c3-desc"></div>
+      <span class="btn green" data-i18n="btn"></span>
+    </div>
+
+    <div class="card purple">
+      <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M2 10h20"/></svg></div>
+      <h3 data-i18n="c4-title"></h3>
+      <div class="price purple">5 000 CFA</div>
+      <div class="desc" data-i18n="c4-desc"></div>
+      <span class="btn purple" data-i18n="btn"></span>
+    </div>
+
+    <div class="card orange">
+      <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="14" height="14" rx="2"/><circle cx="9" cy="12" r="2.5"/><path d="M16 10l6-3v10l-6-3"/></svg></div>
+      <h3 data-i18n="c5-title"></h3>
+      <div class="price orange">5 000 CFA</div>
+      <div class="desc" data-i18n="c5-desc"></div>
+      <span class="btn orange" data-i18n="btn"></span>
+    </div>
+
+    <div class="card teal">
+      <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M10 9l5 3-5 3z"/></svg></div>
+      <h3 data-i18n="c6-title"></h3>
+      <div class="price teal">5 000–10 000 CFA</div>
+      <div class="desc" data-i18n="c6-desc"></div>
+      <span class="btn teal" data-i18n="btn"></span>
+    </div>
+
+  </div>
+
+  <div class="section-head right">
+    <span class="rule"></span>
+    <span class="section-eyebrow" data-i18n="packages-title"></span>
+  </div>
+
+  <div class="packages">
+    <div class="pkg-grid">
+
+      <div class="pkg-card">
+        <h4 data-i18n="p1-title"></h4>
+        <div class="pkg-price" style="color:var(--pink)">19 000 CFA</div>
+        <div class="pkg-old" data-i18n="p1-save"></div>
+        <div class="pkg-desc" data-i18n="p1-desc"></div>
+        <div class="pkg-bar" style="background:linear-gradient(90deg,var(--pink),var(--gold))"></div>
+      </div>
+
+      <div class="pkg-card">
+        <h4 data-i18n="p2-title"></h4>
+        <div class="pkg-price" style="color:var(--blue)">16 000 CFA</div>
+        <div class="pkg-old" data-i18n="p2-save"></div>
+        <div class="pkg-desc" data-i18n="p2-desc"></div>
+        <div class="pkg-bar" style="background:linear-gradient(90deg,var(--blue),var(--purple))"></div>
+      </div>
+
+      <div class="pkg-card">
+        <h4 data-i18n="p3-title"></h4>
+        <div class="pkg-price" style="color:var(--green)">28 000 CFA</div>
+        <div class="pkg-old" data-i18n="p3-save"></div>
+        <div class="pkg-desc" data-i18n="p3-desc"></div>
+        <div class="pkg-bar" style="background:linear-gradient(90deg,var(--green),var(--teal))"></div>
+      </div>
+
+      <div class="pkg-card">
+        <h4 data-i18n="p4-title"></h4>
+        <div class="pkg-price" style="color:var(--orange)">39 000 CFA</div>
+        <div class="pkg-old" data-i18n="p4-save"></div>
+        <div class="pkg-desc" data-i18n="p4-desc"></div>
+        <div class="pkg-bar" style="background:linear-gradient(90deg,var(--orange),var(--pink))"></div>
+      </div>
+
+      <div class="pkg-card">
+        <h4 data-i18n="p5-title"></h4>
+        <div class="pkg-price" style="color:var(--purple)">21 000 CFA</div>
+        <div class="pkg-old" data-i18n="p5-save"></div>
+        <div class="pkg-desc" data-i18n="p5-desc"></div>
+        <div class="pkg-bar" style="background:linear-gradient(90deg,var(--purple),var(--blue))"></div>
+      </div>
+
+      <div class="pkg-card">
+        <h4 data-i18n="p6-title"></h4>
+        <div class="pkg-price" style="color:var(--teal)">24 000 CFA</div>
+        <div class="pkg-old" data-i18n="p6-save"></div>
+        <div class="pkg-desc" data-i18n="p6-desc"></div>
+        <div class="pkg-bar" style="background:linear-gradient(90deg,var(--teal),var(--green))"></div>
+      </div>
+
+      <div class="pkg-card best-seller">
+        <div class="best-badge" data-i18n="best-badge"></div>
+        <h4 data-i18n="p7-title"></h4>
+        <div class="pkg-price" style="color:var(--pink)">40 000 CFA</div>
+        <div class="pkg-old" data-i18n="p7-save"></div>
+        <div class="pkg-desc" data-i18n="p7-desc"></div>
+        <div class="pkg-bar" style="background:linear-gradient(90deg,var(--pink),var(--purple))"></div>
+      </div>
+
+      <div class="pkg-card">
+        <h4 data-i18n="p8-title"></h4>
+        <div class="pkg-price" style="color:var(--orange)">80 000 CFA</div>
+        <div class="pkg-old" data-i18n="p8-save"></div>
+        <div class="pkg-desc" data-i18n="p8-desc"></div>
+        <div class="pkg-bar" style="background:linear-gradient(90deg,var(--orange),var(--pink))"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="contact">
+    <div class="contact-eyebrow" data-i18n="lets-talk"></div>
+    <h3 data-i18n="contact-title"></h3>
+    <div class="phone">0545989223</div>
+    <ul>
+      <li data-i18n="li1"></li>
+      <li data-i18n="li2"></li>
+      <li data-i18n="li3"></li>
+      <li data-i18n="li4"></li>
+      <li data-i18n="li5"></li>
+      <li data-i18n="li6"></li>
+    </ul>
+  </div>
+
+  <div class="stripe" data-i18n="stripe"></div>
+
+  </div>
+</div>
+
+<script>
+const translations = {
+  "tagline": {fr:"Services de Design Graphique", en:"Graphic Design Services"},
+  "slogan": {fr:"Visuels Qui Font Vibrer Vos Idées", en:"Visuals That Bring Your Ideas to Life"},
+  "core-services": {fr:"Services Principaux", en:"Core Services"},
+  "c1-title": {fr:"Affiches & Flyers", en:"Posters & Flyers"},
+  "c1-desc": {fr:"Design personnalisé unique pour partage numérique ou impression, taille et message au choix.", en:"Single custom design for digital sharing or direct print, size and message."},
+  "c2-title": {fr:"Présentations PowerPoint", en:"PowerPoint Presentations"},
+  "c2-desc": {fr:"Design haut de gamme avec transitions et animations soignées, mise en page personnalisée, jusqu'à 10-15 diapositives, thème standard fourni.", en:"High-end quality design with polished transitions and animations, custom layout, up to 10-15 slides, standard theme provided."},
+  "c3-title": {fr:"Logos d'Entreprise", en:"Business Logos"},
+  "c3-desc": {fr:"Design de logo minimaliste basé sur votre vision de marque, signe et couleurs.", en:"Minimalist logo design based on your brand vision, sign and colors."},
+  "c4-title": {fr:"Design de Carte de Visite", en:"Business Card Design"},
+  "c4-desc": {fr:"Mise en page simple et élégante utilisant vos éléments de marque existants.", en:"Simple, elegant business card layout using your existing brand elements."},
+  "c5-title": {fr:"Graphiques Réseaux Sociaux", en:"Social Media Graphics"},
+  "c5-desc": {fr:"Modèle graphique pour statuts Facebook, Instagram ou WhatsApp.", en:"Graphic template for Facebook, Instagram or WhatsApp status designs."},
+  "c6-title": {fr:"Services de Vidéo Publicitaire de Marque", en:"Brand Advertisement Video Services"},
+  "c6-desc": {fr:"Courtes animations promotionnelles, montage avec vos photos, vidéos et éléments fournis.", en:"Short animated promotional graphics, editing with your provided photos, video and materials."},
+  "btn": {fr:"Commander", en:"Order Now"},
+  "packages-title": {fr:"Offres Groupées", en:"Package Deals"},
+
+  "p1-title": {fr:"Pack Démarrage", en:"Startup Bundle"},
+  "p1-save": {fr:"Économisez 2 500 CFA", en:"Save 2,500 CFA"},
+  "p1-desc": {fr:"Logo + Carte de Visite + 1 Affiche", en:"Logo + Business Card + 1 Poster"},
+
+  "p2-title": {fr:"Pack Marketing", en:"Marketing Package"},
+  "p2-save": {fr:"Économisez 4 000 CFA", en:"Save 4,000 CFA"},
+  "p2-desc": {fr:"2 Affiches", en:"2 Posters"},
+
+  "p3-title": {fr:"Pack Marque Complète", en:"Complete Brand Package"},
+  "p3-save": {fr:"Économisez 3 500 CFA", en:"Save 3,500 CFA"},
+  "p3-desc": {fr:"Logo + Carte de Visite + 2 Affiches", en:"Logo + Business Card + 2 Posters"},
+
+  "p4-title": {fr:"Offre Complète", en:"Complete Deal"},
+  "p4-save": {fr:"Économisez 5 000 CFA", en:"Save 5,000 CFA"},
+  "p4-desc": {fr:"Logo + Carte de Visite + 2 Affiches + Graphique Réseaux Sociaux + Vidéo Publicitaire", en:"Logo + Business Card + 2 Posters + Social Media Graphic + Brand Ad Video"},
+
+  "p5-title": {fr:"Pack PowerPoint", en:"PowerPoint Package"},
+  "p5-save": {fr:"Économisez 3 000 CFA", en:"Save 3,000 CFA"},
+  "p5-desc": {fr:"3 Présentations PowerPoint", en:"3 PowerPoint Presentations"},
+
+  "p6-title": {fr:"Mini Pack Affiches", en:"Mini Poster Pack"},
+  "p6-save": {fr:"Économisez 6 000 CFA", en:"Save 6,000 CFA"},
+  "p6-desc": {fr:"3 Affiches & Flyers", en:"3 Posters & Flyers"},
+
+  "best-badge": {fr:"★ Meilleure Vente", en:"★ Best Seller"},
+  "p7-title": {fr:"Pack Affiches", en:"Poster Pack"},
+  "p7-save": {fr:"Économisez 10 000 CFA", en:"Save 10,000 CFA"},
+  "p7-desc": {fr:"5 Affiches & Flyers", en:"5 Posters & Flyers"},
+
+  "p8-title": {fr:"Pack Affiches en Gros", en:"Bulk Poster Pack"},
+  "p8-save": {fr:"Économisez 20 000 CFA", en:"Save 20,000 CFA"},
+  "p8-desc": {fr:"10 Affiches & Flyers", en:"10 Posters & Flyers"},
+
+  "lets-talk": {fr:"Parlons de Votre Projet", en:"Let's Talk About Your Project"},
+  "contact-title": {fr:"Contactez-moi Aujourd'hui", en:"Contact Today"},
+  "li1": {fr:"Moyens de paiement : Wave, Espèces", en:"Payment methods: Wave, Cash"},
+  "li2": {fr:"Je vous offre le meilleur et la qualité", en:"I give you the best and quality if any"},
+  "li3": {fr:"Le design vous sera livré aux formats standards (PNG, JPG, PDF, etc.)", en:"I will give you the design in normal format (PNG, JPG, PDF etc.)"},
+  "li4": {fr:"Des modifications sont possibles dans une certaine limite", en:"You can ask for changes within limits"},
+  "li5": {fr:"Vous pouvez demander un design pour votre entreprise", en:"You can ask for design for your business"},
+  "li6": {fr:"Les tarifs dépendent de l'article", en:"Paid plans depend on the item"},
+
+  "stripe": {fr:"✷ JE SOUTIENS VOTRE MARQUE, UN DESIGN À LA FOIS ✷", en:"✷ I SUPPORT YOUR BRAND, ONE DESIGN AT A TIME ✷"}
+};
+
+function setLang(lang){
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(translations[key]) el.textContent = translations[key][lang];
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn=>{
+    btn.classList.toggle('active', btn.getAttribute('data-lang')===lang);
+  });
+  document.documentElement.lang = lang;
+}
+
+setLang('fr');
+</script>
+
+</body>
+</html>
